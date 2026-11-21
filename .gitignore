@@ -1,0 +1,16 @@
+node_modules/
+dist/
+dist-test/
+workspaces/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.open-director/
+*.tsbuildinfo
+*.mp4
+*.mov
+*.tmp
+.env
+.env.*
+.DS_Store

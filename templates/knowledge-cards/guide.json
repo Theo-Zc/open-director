@@ -1,0 +1,17 @@
+{
+  "schema": "motiongit-guide/1",
+  "template": "knowledge-cards",
+  "name": "结构化知识卡片 · 三步拆解",
+  "purpose": "以清晰的三步结构递进呈现方法或结论，配合音效精准落地。",
+  "firstReply": "这套模板会把核心观点拆成三个依次展开的卡片。请告诉我你想讲的主题和三个步骤要点。",
+  "fit": {
+    "genres": ["knowledge", "explainer"],
+    "goodFor": ["三步法", "对比清单", "课程总结"],
+    "notFor": ["纯氛围 Vlog"]
+  },
+  "materials": [],
+  "paramGroups": [
+    { "id": "header", "title": "标题", "params": ["heading", "accentColor"] },
+    { "id": "cards", "title": "三张卡片", "params": ["step1", "step2", "step3"] }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "format": "adudir-motion-project",
+  "specVersion": "2.0.0",
+  "packageProfile": "adudir-motion-project/2",
+  "project": {
+    "id": "demo-paper-perspective",
+    "name": "纸面透视 · 示例工程",
+    "revision": 1
+  },
+  "runtime": {
+    "profile": "adudir.composition/1",
+    "entry": "composition.html",
+    "engine": "open-director"
+  },
+  "output": {
+    "width": 1280,
+    "height": 720,
+    "fps": {
+      "num": 30000,
+      "den": 1000
+    }
+  }
+}

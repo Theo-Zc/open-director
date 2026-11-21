@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "产品发布 · 高能卡点宣传",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "productName": { "type": "string", "maxLength": 24, "default": "OPEN DIRECTOR", "title": "产品名称" },
+    "tagline": { "type": "string", "maxLength": 36, "default": "代码驱动，毫秒级精确剪辑", "title": "核心口号" },
+    "metricValue": { "type": "number", "min": 1, "max": 9999, "step": 1, "default": 60, "title": "关键数值" },
+    "metricLabel": { "type": "string", "maxLength": 20, "default": "FPS 确定性导出", "title": "数值单位说明" },
+    "glowColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "format": "color", "default": "#A855F7", "title": "光晕颜色" }
+  }
+}

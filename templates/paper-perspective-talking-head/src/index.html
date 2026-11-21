@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--paperColor, #F4EFE6);
+    color: #16181d;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  }
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(22, 24, 29, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(22, 24, 29, 0.06) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: calc(var(--showGrid, 1));
+  }
+  .layout {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 96px 120px;
+    gap: 72px;
+  }
+  .card {
+    flex: 1;
+    background: #ffffff;
+    border: 3px solid #16181d;
+    border-radius: 28px;
+    padding: 56px 60px;
+    box-shadow: 16px 16px 0 var(--accentColor, #2FD3B4);
+  }
+  .meta-row { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .pill {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: var(--accentColor, #2FD3B4);
+    color: #082f2b;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .tag {
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 2px solid #16181d;
+    font-size: 18px;
+    font-weight: 600;
+    background: #fffbeb;
+  }
+  h1 { margin: 0 0 20px; font-size: 68px; line-height: 1.18; }
+  p { margin: 0; font-size: 30px; color: #4b5563; line-height: 1.5; }
+  .speaker {
+    width: 420px;
+    height: 420px;
+    border-radius: 999px;
+    background: var(--accentColor, #2FD3B4);
+    border: 4px solid #16181d;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #082f2b;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="layout">
+    <div class="card">
+      <div class="meta-row">
+        <span class="pill" id="brand">Open Director</span>
+        <span class="tag" id="kw">结构化表达</span>
+      </div>
+      <h1 id="title">先说明条件，再给出判断</h1>
+      <p id="sub">把要点放在一张纸上，随讲解逐层展开</p>
+    </div>
+    <div class="speaker" data-film-sample="人物口播窗">人物口播位置</div>
+  </div>
+  <script type="module">
+    import { useParams } from './__film/film-params.mjs';
+    import { ease, spring } from './__film/motion-primitives.mjs';
+
+    const card = document.querySelector('.card');
+    const speaker = document.querySelector('.speaker');
+    const brandEl = document.getElementById('brand');
+    const kwEl = document.getElementById('kw');
+    const titleEl = document.getElementById('title');
+    const subEl = document.getElementById('sub');
+
+    window.film = {
+      duration: 5.0,
+      sfx: [
+        { at: 0.05, id: 'whoosh_short', gain: -4, label: '卡片滑入' },
+        { at: 0.45, id: 'pop_soft', gain: -2, pan: 0.35, label: '人物窗出现' },
+      ],
+      params: {
+        brandName: { type: 'text', default: 'Open Director', label: '品牌名', maxLength: 24 },
+        title: { type: 'text', default: '先说明条件，再给出判断', label: '主标题', maxLength: 32 },
+        subtitle: { type: 'text', default: '把要点放在一张纸上，随讲解逐层展开', label: '副标题', maxLength: 48 },
+        keyword: { type: 'text', default: '结构化表达', label: '关键词', maxLength: 16 },
+        accentColor: { type: 'color', default: '#2FD3B4', label: '强调色' },
+        paperColor: { type: 'color', default: '#F4EFE6', label: '纸面底色' },
+        showGrid: { type: 'toggle', default: true, label: '背景网格' },
+      },
+      frame(t) {
+        brandEl.textContent = param('brandName');
+        kwEl.textContent = param('keyword');
+        titleEl.textContent = param('title');
+        subEl.textContent = param('subtitle');
+
+        const p = ease.outCubic(Math.min(1, t / 0.65));
+        const s = spring(t, { stiffness: 170, damping: 18 });
+        card.style.opacity = String(0.35 + 0.65 * p);
+        card.style.transform = `perspective(1200px) rotateY(${(1 - s) * -12}deg) translateY(${(1 - s) * 36}px)`;
+
+        const sp = spring(Math.max(0, t - 0.2), { stiffness: 210, damping: 17 });
+        speaker.style.opacity = String(0.25 + 0.75 * ease.outQuad(Math.min(1, Math.max(0, (t - 0.2) / 0.4))));
+        speaker.style.transform = `scale(${0.8 + 0.2 * sp})`;
+      },
+    };
+    const param = useParams(window.film);
+  </script>
+</body>
+</html>

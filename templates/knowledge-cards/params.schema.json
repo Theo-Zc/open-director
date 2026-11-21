@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "结构化知识卡片",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "heading": { "type": "string", "maxLength": 28, "default": "高效剪辑的三个原则", "title": "总标题" },
+    "step1": { "type": "string", "maxLength": 36, "default": "01 · 剪辑本身写成纯文本", "title": "步骤一" },
+    "step2": { "type": "string", "maxLength": 36, "default": "02 · 每一帧只由时间 t 决定", "title": "步骤二" },
+    "step3": { "type": "string", "maxLength": 36, "default": "03 · 人与 AI 共改同一份工程", "title": "步骤三" },
+    "accentColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "format": "color", "default": "#38BDF8", "title": "主题色" }
+  }
+}

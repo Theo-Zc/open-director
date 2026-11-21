@@ -1,0 +1,14 @@
+{
+  "schema": "open-director.cues/1",
+  "cues": {
+    "reveal": {
+      "word": "代码",
+      "clip": "narration"
+    },
+    "ending": {
+      "clip": "intro",
+      "edge": "end",
+      "offset": -0.5
+    }
+  }
+}

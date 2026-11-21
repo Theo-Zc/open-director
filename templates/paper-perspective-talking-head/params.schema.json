@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "纸面透视 · 口播讲解",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "brandName": { "type": "string", "maxLength": 24, "default": "Open Director", "title": "品牌名" },
+    "title": { "type": "string", "maxLength": 32, "default": "先说明条件，再给出判断", "title": "主标题" },
+    "subtitle": { "type": "string", "maxLength": 48, "default": "把要点放在一张纸上，随讲解逐层展开", "title": "副标题" },
+    "keyword": { "type": "string", "maxLength": 16, "default": "结构化表达", "title": "关键词" },
+    "accentColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "format": "color", "default": "#2FD3B4", "title": "强调色" },
+    "paperColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "format": "color", "default": "#F4EFE6", "title": "纸面底色" },
+    "showGrid": { "type": "boolean", "default": true, "title": "背景网格" }
+  }
+}

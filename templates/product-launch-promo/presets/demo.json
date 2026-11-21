@@ -1,0 +1,7 @@
+{
+  "productName": "OPEN DIRECTOR",
+  "tagline": "代码驱动，毫秒级精确剪辑",
+  "metricValue": 60,
+  "metricLabel": "FPS 确定性导出",
+  "glowColor": "#A855F7"
+}

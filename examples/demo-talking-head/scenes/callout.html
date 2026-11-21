@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: transparent; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    background: #16181d;
+    color: #fff;
+    border-radius: 12px;
+    border: 2px solid var(--badgeAccent, #38bdf8);
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 999px; background: var(--badgeAccent, #38bdf8); }
+</style>
+</head>
+<body>
+  <div class="pill"><span class="dot"></span><span id="label">确定性逐帧</span></div>
+  <script type="module">
+    import { useParams } from './__film/film-params.mjs';
+    const pill = document.querySelector('.pill');
+    const labelEl = document.getElementById('label');
+
+    window.film = {
+      width: 320,
+      height: 80,
+      duration: 2.5,
+      params: {
+        badgeText: { type: 'text', default: '确定性逐帧', label: '角标文案', maxLength: 20 },
+        badgeAccent: { type: 'color', default: '#38bdf8', label: '角标强调色' },
+      },
+      frame(t) {
+        labelEl.textContent = param('badgeText');
+        const p = Math.min(1, Math.max(0, t / 0.35));
+        pill.style.opacity = String(p);
+        pill.style.transform = `translateX(${(1 - p) * -20}px)`;
+      },
+    };
+    const param = useParams(window.film);
+  </script>
+</body>
+</html>

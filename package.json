@@ -1,0 +1,23 @@
+{
+  "name": "open-director",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Clean-room open-source code-native video editor & deterministic .motion engine",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @open-director/protocol && npm run build -w @open-director/engine && npm run build -w @open-director/mcp-server && npm run build -w @open-director/studio-server && npm run build -w @open-director/studio-web",
+    "test": "npm run test -w @open-director/protocol && npm run test -w @open-director/engine && npm run test -w @open-director/mcp-server && npm run test -w @open-director/studio-server",
+    "dev:studio": "npm run dev -w @open-director/studio-server",
+    "dev:web": "npm run dev -w @open-director/studio-web",
+    "cli": "node packages/mcp-server/dist/cli.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "typescript": "^5.8.3"
+  }
+}

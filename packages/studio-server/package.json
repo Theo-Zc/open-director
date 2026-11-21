@@ -1,0 +1,27 @@
+{
+  "name": "@open-director/studio-server",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "tsc -p tsconfig.json && tsc -p tsconfig.test.json && node --test dist-test/*.test.js",
+    "dev": "npm run build && node dist/index.js"
+  },
+  "dependencies": {
+    "@open-director/engine": "*",
+    "@open-director/protocol": "*",
+    "ws": "^8.18.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.18.1"
+  }
+}

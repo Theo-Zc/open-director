@@ -1,0 +1,16 @@
+{
+  "schema": "motiongit-guide/1",
+  "template": "product-launch-promo",
+  "name": "产品发布 · 高能卡点宣传",
+  "purpose": "用大字报落版冲击与数字递增动画突出核心卖点。",
+  "firstReply": "这套模板适合做功能上线或核心指标的震撼开场。告诉我产品名、核心口号和一组关键数字吧！",
+  "fit": {
+    "genres": ["promo", "product-launch"],
+    "goodFor": ["产品口号", "性能指标展示", "快节奏片头"],
+    "notFor": ["长篇访谈对话"]
+  },
+  "materials": [],
+  "paramGroups": [
+    { "id": "hero", "title": "主视觉", "params": ["productName", "tagline", "metricValue", "metricLabel", "glowColor"] }
+  ]
+}

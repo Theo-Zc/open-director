@@ -1,0 +1,27 @@
+{
+  "format": "motiongit-template",
+  "specVersion": "0.1.0-draft.1",
+  "template": {
+    "id": "product-launch-promo",
+    "version": "1.0.0",
+    "name": "产品发布 · 高能卡点宣传",
+    "description": "大标题视觉冲击 + 数据指标递增动画，适合产品发布、功能上线与短片开场。",
+    "language": "zh"
+  },
+  "runtime": {
+    "profile": "adudir.page/1",
+    "entry": "src/index.html",
+    "engine": "open-director"
+  },
+  "parameters": {
+    "schema": "params.schema.json",
+    "defaultPreset": "presets/demo.json"
+  },
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": { "num": 60, "den": 1 }
+  },
+  "ai": { "entry": "guide.json", "guide": "guide.json" },
+  "license": { "id": "MIT" }
+}

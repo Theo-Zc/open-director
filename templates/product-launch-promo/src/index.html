@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; width: 100%; height: 100%; overflow: hidden;
+    background: #050509; color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  }
+  .aura {
+    position: absolute; left: 50%; top: 50%; width: 920px; height: 920px;
+    transform: translate(-50%, -50%);
+    border-radius: 999px;
+    background: radial-gradient(circle, var(--glowColor, #A855F7) 0%, transparent 68%);
+    opacity: 0.35; filter: blur(48px);
+  }
+  .center {
+    position: relative; width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px;
+  }
+  .eyebrow {
+    font-size: 26px; font-weight: 700; letter-spacing: 0.24em; color: var(--glowColor, #A855F7); margin-bottom: 24px;
+  }
+  h1 { margin: 0 0 42px; font-size: 84px; line-height: 1.1; }
+  .stat-box {
+    display: inline-flex; align-items: baseline; gap: 18px;
+    padding: 24px 48px; border-radius: 24px; border: 2px solid rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.06);
+  }
+  .stat-num { font-size: 76px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .stat-label { font-size: 28px; color: #cbd5e1; }
+</style>
+</head>
+<body>
+  <div class="aura"></div>
+  <div class="center">
+    <div class="eyebrow" id="prod">OPEN DIRECTOR</div>
+    <h1 id="tag">代码驱动，毫秒级精确剪辑</h1>
+    <div class="stat-box">
+      <span class="stat-num" id="num">60</span>
+      <span class="stat-label" id="lbl">FPS 确定性导出</span>
+    </div>
+  </div>
+  <script type="module">
+    import { useParams } from './__film/film-params.mjs';
+    import { countUp, ease, spring } from './__film/motion-primitives.mjs';
+
+    const prodEl = document.getElementById('prod');
+    const tagEl = document.getElementById('tag');
+    const numEl = document.getElementById('num');
+    const lblEl = document.getElementById('lbl');
+    const statBox = document.querySelector('.stat-box');
+    const aura = document.querySelector('.aura');
+
+    window.film = {
+      duration: 4.0,
+      sfx: [
+        { at: 0.0, id: 'whoosh_long', gain: -2, label: '开场推进' },
+        { at: 0.55, id: 'kick_thud', gain: 0, label: '主标落版' },
+        { at: 1.8, id: 'sparkle', gain: -3, label: '指标定格' },
+      ],
+      params: {
+        productName: { type: 'text', default: 'OPEN DIRECTOR', label: '产品名称', maxLength: 24 },
+        tagline: { type: 'text', default: '代码驱动，毫秒级精确剪辑', label: '核心口号', maxLength: 36 },
+        metricValue: { type: 'number', default: 60, min: 1, max: 9999, step: 1, label: '关键数值' },
+        metricLabel: { type: 'text', default: 'FPS 确定性导出', label: '数值说明', maxLength: 20 },
+        glowColor: { type: 'color', default: '#A855F7', label: '光晕颜色' },
+      },
+      frame(t) {
+        prodEl.textContent = param('productName');
+        tagEl.textContent = param('tagline');
+        lblEl.textContent = param('metricLabel');
+
+        const s = spring(t, { stiffness: 200, damping: 19 });
+        tagEl.style.opacity = String(ease.outCubic(Math.min(1, t / 0.4)));
+        tagEl.style.transform = `scale(${1.25 - 0.25 * s})`;
+
+        const boxP = ease.outCubic(Math.min(1, Math.max(0, (t - 0.65) / 0.45)));
+        statBox.style.opacity = String(boxP);
+        statBox.style.transform = `translateY(${(1 - boxP) * 30}px)`;
+
+        const val = Math.round(countUp(t, 0.7, 1.85, 0, Number(param('metricValue'))));
+        numEl.textContent = String(val);
+
+        aura.style.opacity = String(0.2 + 0.25 * Math.sin(t * 2.2));
+      },
+    };
+    const param = useParams(window.film);
+  </script>
+</body>
+</html>

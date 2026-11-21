@@ -1,0 +1,27 @@
+{
+  "format": "motiongit-template",
+  "specVersion": "0.1.0-draft.1",
+  "template": {
+    "id": "knowledge-cards",
+    "version": "1.0.0",
+    "name": "结构化知识卡片 · 三步拆解",
+    "description": "三张递进卡片逐个弹出并高亮当前要点，适合方法论讲解、教程总结与对比分析。",
+    "language": "zh"
+  },
+  "runtime": {
+    "profile": "adudir.page/1",
+    "entry": "src/index.html",
+    "engine": "open-director"
+  },
+  "parameters": {
+    "schema": "params.schema.json",
+    "defaultPreset": "presets/demo.json"
+  },
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": { "num": 60, "den": 1 }
+  },
+  "ai": { "entry": "guide.json", "guide": "guide.json" },
+  "license": { "id": "MIT" }
+}

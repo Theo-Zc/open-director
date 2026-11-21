@@ -1,0 +1,37 @@
+{
+  "format": "motiongit-template",
+  "specVersion": "0.1.0-draft.1",
+  "template": {
+    "id": "paper-perspective-talking-head",
+    "version": "1.0.0",
+    "name": "纸面透视 · 口播讲解",
+    "description": "用纸面透视、卡片层次和图文关系配合口播，适合方法拆解与结构化知识。",
+    "language": "zh"
+  },
+  "runtime": {
+    "profile": "adudir.page/1",
+    "entry": "src/index.html",
+    "engine": "open-director"
+  },
+  "parameters": {
+    "schema": "params.schema.json",
+    "defaultPreset": "presets/demo.json"
+  },
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": { "num": 60, "den": 1 },
+    "layouts": {
+      "landscape": { "width": 1920, "height": 1080 },
+      "portrait": { "width": 1080, "height": 1920 }
+    },
+    "defaultLayout": "landscape"
+  },
+  "ai": {
+    "entry": "guide.json",
+    "guide": "guide.json"
+  },
+  "license": {
+    "id": "MIT"
+  }
+}

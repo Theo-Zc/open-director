@@ -1,0 +1,21 @@
+{
+  "schema": "motiongit-guide/1",
+  "template": "paper-perspective-talking-head",
+  "name": "纸面透视 · 口播讲解",
+  "purpose": "用纸面透视、卡片层次和图文关系配合口播，适合方法拆解与结构化知识。",
+  "firstReply": "这个模板适合把一期口播讲清楚。你这期想表达什么？已有的文稿、口播视频或配图可以直接发给我。",
+  "fit": {
+    "genres": ["talking-head", "knowledge"],
+    "goodFor": ["关键词与观点的强调", "步骤、对比和结论"],
+    "notFor": ["纯实拍商品硬广"]
+  },
+  "materials": [
+    { "role": "video.presenter", "required": false, "use": "口播人物视频" },
+    { "role": "text.script", "required": false, "use": "文稿或字幕" }
+  ],
+  "paramGroups": [
+    { "id": "brand", "title": "品牌与配色", "params": ["brandName", "accentColor", "paperColor"] },
+    { "id": "text", "title": "文字内容", "params": ["title", "subtitle", "keyword"] },
+    { "id": "style", "title": "样式", "params": ["showGrid"] }
+  ]
+}
